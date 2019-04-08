@@ -19,5 +19,5 @@ Adding a Cron entry to execute schedule run command
 ``` 
 
 ##### Note
-If you might want to change the schedule for the rss task(eg. make it to run every minute) you can change it in the schedule function in **console/kernel.php**. 
+If you want to change the schedule for the rss task(eg. make it to run every minute) you can change it in the schedule function in **console/kernel.php**. 
 Currently it runs every day at 6 am.
