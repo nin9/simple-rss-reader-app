@@ -30,12 +30,15 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function (){
             $feed = Feeds::make('https://www.winespectator.com/rss/rss?t=dwp');
+            
             Cache::flush();
+            $arr = [];
             
             foreach($feed->get_items()as $item){
                 $date =  Carbon::parse($item->get_date())->startOfDay();
                 if($date->eq(Carbon::today())){
                     Log::debug($item->get_title());
+                    
                     $data = [
                         'title' => $item->get_title(),
                         'pubDate' => $item->get_date(),
@@ -44,12 +47,15 @@ class Kernel extends ConsoleKernel
                         'category' => $item->get_category(),
                         'author' => $item->get_author()
                     ];
+
+                    $arr[] = $item->get_title();
                     
                     Cache::put($item->get_title(), $data , now()->addDays(1));
                     Log::debug($item->get_title());
                 } 
             };
-            
+
+            Cache::put('available_wines', $arr, now()->addDays(1));
             Log::debug(count($feed->get_items()));
         
         })->dailyAt('6:00'); //everyMinute();

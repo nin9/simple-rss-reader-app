@@ -25,12 +25,27 @@ class OrderController extends Controller
 
         if(empty($wine)){
             return response()->json([
-                'message' => 'Error: Wine not availabe today.'
+                'message' => 'Wine not availabe today.'
             ], 404);
         }
 
         return response()->json([
             'data' => $wine,
+            'message' => 'Succes'
+        ], 200);
+    }
+
+    public function getAvailableWines(Request $request){
+        $wines = Cache::get('available_wines');
+        
+        if (empty($wines)){
+            return response()->json([
+                'message' => 'No Wines availlable today'
+            ], 404);    
+        }
+
+        return response()->json([
+            'data' => $wines,
             'message' => 'Succes'
         ], 200);
     }
