@@ -19,5 +19,10 @@ Adding a Cron entry to execute schedule run command
 ``` 
 
 ##### Note
-If you want to change the schedule for the rss task(eg. make it to run every minute) you can change it in the schedule function in **console/kernel.php**. 
+If you want to change the schedule for the rss task(eg. make it to run every minute) you can change it in the schedule function in **console/kernel.php**.  
 Currently it runs every day at 6 am.
+
+
+## API
+**GET /api/available_wines:** returns the wines available today.  
+**POST /api/order:** takes _wine_title_ as a body parameter and returns the data of that wine if available.
