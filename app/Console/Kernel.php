@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
             
             Log::debug(count($feed->get_items()));
         
-        })->dailyAt('6:00');
+        })->dailyAt('6:00'); //everyMinute();
     }
 
     /**
